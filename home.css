@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background: #f5f7f6;
+  color: #1a1a1a;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  background: #e9f1ec;
+}
+
+.logo {
+  color: #0a7c4a;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #333;
+}
+
+nav a:hover {
+  color: #0a7c4a;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: #ccc;
+  border-radius: 50%;
+}
+
+/* HERO */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 80px 60px;
+}
+
+.hero-text {
+  max-width: 500px;
+}
+
+.tag {
+  background: #dbeee3;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.hero h2 {
+  font-size: 42px;
+  margin: 20px 0;
+}
+
+.hero h2 span {
+  color: #0a7c4a;
+}
+
+.hero p {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.buttons button {
+  padding: 12px 20px;
+  border-radius: 25px;
+  border: none;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.primary {
+  background: #0a7c4a;
+  color: white;
+}
+
+.secondary {
+  background: #dbeee3;
+}
+
+/* IMAGE */
+.hero-image {
+  width: 350px;
+  height: 300px;
+  background: linear-gradient(135deg, #0a7c4a, #1c3d2f);
+  border-radius: 20px;
+  position: relative;
+}
+
+.card {
+  position: absolute;
+  bottom: -20px;
+  left: 20px;
+  background: white;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+/* FEATURES */
+.features {
+  padding: 60px;
+}
+
+.features h3 {
+  font-size: 26px;
+}
+
+.subtitle {
+  margin: 10px 0 30px;
+  color: #666;
+}
+
+.cards {
+  display: flex;
+  gap: 20px;
+  height: 200px;
+}
+
+.feature-card {
+  background: #e9edf2;
+  padding: 20px;
+  border-radius: 15px;
+  flex: 1;
+}
+
+/* CTA */
+.cta {
+  margin: 60px;
+  padding: 40px;
+  background: linear-gradient(135deg, #0c2d48, #1b4d3e);
+  color: white;
+  border-radius: 20px;
+  text-align: left;
+}
+
+.cta button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  border-radius: 25px;
+  border: none;
+  background: #0a7c4a;
+  color: white;
+  cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #777;
+}
