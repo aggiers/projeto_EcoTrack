@@ -1,102 +1,115 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link 
-    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
-  <title>EcoTrack</title>
-  <link rel="stylesheet" href="css/home.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack - Dashboard</title>
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <a href="home.html" class="logo">EcoTrack</a>
-
-    <nav>
-      <a href="#">Dashboard</a>
-      <a href="#">Calculador</a>
-      <a href="#">Ações</a>
-    </nav>
-
-    <div class="profile">
-      <div class="avatar"></div>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-text">
-      <span class="tag">SUSTENTABILIDADE EM FOCO</span>
-
-      <h2>
-        Transforme sua <span>pegada ecológica</span><br>
-        em impacto vivo.
-      </h2>
-
-      <p>
-        Mensure, acompanhe e reduza seu impacto ambiental com nossa tela interativa.
-      </p>
-
-      <div class="buttons">
-        <button class="primary">Começar</button>
-        <button class="secondary">Saiba Mais</button>
-      </div>
-    </div>
-
-    <div class="hero-image">
-      <div class="card">
-        <span>🌿 1.2t</span>
-        <p>CO2 economizado</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="features">
-
-    <h3>Onde a consciência encontra a ação.</h3>
-    <p class="subtitle">
-      Transforme o cuidado com o planeta em algo simples e mensurável.
-    </p>
-
-    <div class="cards">
-      <div class="feature-card">
-        <div class="circulo">
-          <img src="images/calculator.svg" alt="">
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="home.html">EcoTrack</a>
+            </div>
+            <nav class="menu-links">
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="calculador.html">Calculador</a></li>
+                    <li><a href="actions.html">Ações</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <div class="user-avatar">👤</div>
+            </div>
         </div>
-        <h4>Cálculo Preciso</h4>
-        <p>Algoritmos baseados em dados reais para calcular sua pegada de carbono em tempo real.</p>
-      </div>
+    </header>
 
-      <div class="feature-card">
-        <div class="circulo"></div>
-        <h4>Recursos Hídricos</h4>
-        <p>Monitore seu consumo de água e descubra formas inteligentes de preservação diária.</p>
-      </div>
+    <main class="content">
+        <section class="hero">
+            <div class="hero-text">
+                <span class="tag">SUSTENTABILIDADE EM FOCO</span>
 
-      <div class="feature-card">
-        <div class="circulo"></div>
-        <h4>Ações Positivas</h4>
-        <p>Sugestões personalizadas de  hábitos que geram imapcto positivo imediato no ecosistema. </p>
-      </div>
-    </div>
-  </section>
+                <h1>Transforme sua <span>pegada ecológica</span> em impacto vivo.</h1>
 
-  <!-- CTA -->
-  <section class="cta">
-    <h3>Pronto para um futuro mais verde?</h3>
-    <p>Junte-se a milhares de usuários.</p>
-    <button>Criar minha conta gratuita</button>
-  </section>
+                <p>Mensure, acompanhe e reduza seu impacto ambiental com nossa tela interativa. O futuro do planeta começa 
+                com as escolhas que você faz hoje.</p>
+                
+                <div class="hero-btns">
+                    <button class="btn-primary">
+                        <a href="cadastro.html">Começar</a>
+                    </button>
+                    <button class="btn-secondary">Saiba Mais</button>
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <div class="main-image">
+                    <img src="images/plantaImage.png" alt="">
+                </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2024 EcoTrack</p>
-  </footer>
+                <div class="floating-stat">
+                    <span class="leaf-icon">🍃</span>
+                    <div>
+                        <strong>1.2t</strong>
+                        <p>CO2 ECONOMIZADO ESTE MÊS</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-intro">
+            <div class="info-header">
+                <h2>Onde a consciência encontra a ação.</h2>
+                <p>Desenhamos uma experiência editorial para tornar o cuidado com o planeta algo intuitivo, belo e mensurável.</p>
+            </div>
+            <div class="tree-bg-icon">🌳</div>
+        </section>
+
+        <section class="features-grid">
+            <div class="feature-card">
+                <div class="card-icon blue-bg">🧮</div>
+                <h3>Cálculo Preciso</h3>
+                <p>Algoritmos baseados em dados reais para calcular sua pegada de carbono em tempo real.</p>
+            </div>
+            <div class="feature-card">
+                <div class="card-icon water-bg">💧</div>
+                <h3>Recursos Hídricos</h3>
+                <p>Monitore seu consumo de água e descubra formas inteligentes de preservação diária.</p>
+            </div>
+            <div class="feature-card">
+                <div class="card-icon star-bg">✨</div>
+                <h3>Ações Positivas</h3>
+                <p>Sugestões personalizadas de hábitos que geram impacto positivo imediato no ecossistema.</p>
+            </div>
+        </section>
+
+        <section class="cta-banner">
+            <div class="cta-content">
+                <h2>Pronto para pintar um futuro mais verde?</h2>
+                <p>Junte-se a milhares de usuários que já estão moldando o Living Canvas do nosso planeta.</p>
+                <button class="btn-cta">
+                    <a href="cadastro.html">Criar minha conta gratuita</a>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-left">
+            <strong>EcoTrack</strong>
+            <p>© 2026 ECOTRACK. A VIDA MAIS VERDE.</p>
+        </div>
+        <div class="footer-right">
+            <a href="#">METODOLOGIA</a>
+            <a href="#">POLÍTICA DE PRIVACIDADE</a>
+            <a href="#">NOS CONTATE</a>
+            <div class="lang-icons">🌐 🇧🇷</div>
+        </div>
+    </footer>
 
 </body>
 </html>
