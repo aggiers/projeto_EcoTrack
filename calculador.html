@@ -34,18 +34,19 @@
         <div class="coluna-esquerda">
             <span class="pagina">CALCULADOR</span>
             <h1 class="titulo-principal">Meça sua <span>pegada viva.</span></h1>
-            <p class="subtitulo">Cada pequena ação compõe um quadro maior. Ajude-nos a entender seus hábitos diários.</p>
+            <p class="subtitulo">Cada pequena ação contribui para um panorama maior. Ajude-nos a compreender seus hábitos diários para calcular sua ressonância ambiental.</p>
+            <br>
 
+            <div class="cabecalho-grupo">
+                <span class="icone-categoria">🚗</span>
+                <h2>Uso de Transporte</h2>
+            </div>
             <section class="grupo-entrada">
-                <div class="cabecalho-grupo">
-                    <span class="icone-categoria">🚗</span>
-                    <h2>Uso de Transporte</h2>
-                </div>
                 
                 <div class="cartao-opcoes">
                     <label class="pergunta">Trajeto Principal</label>
                     <div class="botoes-selecao">
-                        <button class="opcao-btn ativo">Veículo Elétrico</button>
+                        <button class="opcao-btn">Veículo Elétrico</button>
                         <button class="opcao-btn">Transporte Público</button>
                         <button class="opcao-btn">Bicicleta/Caminhada</button>
                     </div>
@@ -62,13 +63,16 @@
                 </div>
             </section>
 
-            <section class="grupo-entrada">
-                <div class="cabecalho-grupo">
-                    <span class="icone-categoria">⚡</span>
-                    <h2>Consumo de Energia</h2>
-                </div>
+            <div class="cabecalho-grupo">
+                <span class="icone-categoria">⚡</span>
+                <h2>Consumo de Energia</h2>
+            </div>
+
+            <section class="grupo-ultimo">
                 
-                <div class="cartao-alternancia">
+            <div class="cartao-alternancia">
+
+                <div class="linha-alternancia">
                     <div class="texto-alternancia">
                         <strong>Fonte de Energia Renovável</strong>
                         <span>Sua energia vem de provedores solares ou eólicos?</span>
@@ -78,9 +82,46 @@
                         <span class="controle"></span>
                     </label>
                 </div>
+
+                <div class="linha-alternancia">
+                    <div class="texto-alternancia">
+                        <strong>Automação residencial inteligente</strong>
+                        <span>Utiliza termostatos ou sistemas de iluminação inteligentes?</span>
+                    </div>
+                    <label class="interruptor">
+                        <input type="checkbox">
+                        <span class="controle"></span>
+                    </label>
+                </div>
+
+            </div>
             </section>
 
-            <button class="botao-calcular">Calcular meu Impacto →</button>
+            <div class="cabecalho-grupo">
+                <span class="icone-categoria">⚡</span>
+                <h2>Pegada hídrica</h2>
+            </div>
+            
+            <section class="grupo-water">
+                <div class="cards-water">
+                    <div class="card-water">
+                        <img src="images/IconRain.svg" alt="">
+                        <p>Banhos rápidos</p>
+                    </div>
+                    <div class="card-water">
+                        <img src="images/Icon.svg" alt="">
+                        <p>Somente cargas completas</p>
+                    </div>
+                    <div class="card-water">
+                        <img src="images/IconFlor.svg" alt="">
+                        <p>Utilização da água da chuva</p>
+                    </div>
+                </div>
+            </section>
+
+            <button class="botao-calcular">
+                <a href="">Calcular meu impacto</a>
+            </button>
         </div>
 
         <div class="coluna-direita">
@@ -107,13 +148,11 @@
 
             <div class="grade-dicas">
                 <div class="cartao-dica">
-                    <span class="icone-dica">🍃</span>
-                    <strong>Eco Dica</strong>
+                    <strong>🌿 Eco Dica</strong>
                     <p>Troque por lâmpadas LED para economizar 150kg de CO2/ano.</p>
                 </div>
                 <div class="cartao-dica">
-                    <span class="icone-dica">🏆</span>
-                    <strong>Conquista</strong>
+                    <strong>💡 Conquista</strong>
                     <p>Ganhe 'Mestre da Água' com mais 4 ações.</p>
                 </div>
             </div>
