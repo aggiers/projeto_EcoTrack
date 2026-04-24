@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoTrack - Bem-vindo</title>
+    <title>EcoTrack - Dashboard</title>
     <link rel="stylesheet" href="css/dashboard.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <script src="js/auth.js"></script>
+<script src="js/dashboard.js"></script>
+
 <body>
 
     <header class="navbar">
@@ -34,7 +37,7 @@
         <section class="welcome-section">
             <div class="welcome-text">
                 <span class="pagina">DASHBOARD</span>
-                <h1>Bem-vindo de volta, <br><span>Agatha.</span></h1>
+                <h1>Bem-vindo de volta, <br><span id="user-name-display">Agatha.</span></h1>
                 <p>Continue assim, você está fazendo a diferença! Suas escolhas diárias conservaram 12kg de CO2 esta semana.</p>
             </div>
             <div class="ecoscore-card">
@@ -138,6 +141,33 @@
             <div class="lang-icons">🌐 🇧🇷</div>
         </div>
     </footer>
+
+    <nav class="mobile_nav">
+        <a href="home.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-house-door"></i>
+            </span>
+            <span class="nav_label">Home</span>
+        </a>
+        <a href="dashboard.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-speedometer2"></i>
+            </span>
+            <span class="nav_label">Dashboard</span>
+        </a>
+        <a href="calculador.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-calculator"></i>
+            </span>
+            <span class="nav_label">Calculador</span>
+        </a>
+        <a href="actions.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-check-circle"></i>
+            </span>
+            <span class="nav_label">Actions</span>
+        </a>
+    </nav>
 
 </body>
 </html>

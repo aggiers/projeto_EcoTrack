@@ -4,15 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoTrack - Missões Diárias</title>
+    <title>EcoTrack - Ações</title>
     <link rel="stylesheet" href="css/actions.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 </head>
 <script src="js/auth.js"></script>
+<script src="js/actions.js"></script>
 <body>
 
     <header class="navbar">
@@ -35,13 +37,17 @@
 
     <main class="conteudo-principal">
 
-        <div class="coluna-esquerda">
-            <span class="pagina">PAINEL DE AÇÕES</span>
-            <h1 class="titulo-missao">Pequenos Passos, <br><span>Impacto Vivo.</span></h1>
-            <p class="descricao-topo">Suas escolhas diárias nutrem o ecossistema global. Cada ação abaixo
-                contribui para sua pontuação pessoal de sustentabilidade e para a restauração ambiental.</p>
 
-            <section class="secao-missoes">
+        <div class="coluna-esquerda">
+            <div class="painel_principal">
+                <span class="pagina">PAINEL DE AÇÕES</span>
+                <h1 class="titulo-missao">Pequenos Passos, <br><span>Impacto Vivo.</span></h1>
+                <p class="descricao-topo">Suas escolhas diárias nutrem o ecossistema global. Cada ação abaixo
+                    contribui para sua pontuação pessoal de sustentabilidade e para a restauração ambiental.</p>
+            </div>
+
+
+        <section class="secao-missoes">
                 <div class="cabecalho-missoes">
                     <h3>Missões de Hoje</h3>
                     <span class="xp-ganho">+450 XP Hoje</span>
@@ -56,14 +62,14 @@
                         <strong>Economizar água</strong>
                         <span>Reduza o tempo de banho para 5 min.</span>
                     </div>
-                    <span class="badge-categoria">WATER SAVER</span>
+                    <span class="badge-categoria">ECONOMIZADOR DE ÁGUA</span>
                     <div class="pontos-missao">
                         <span class="pontos-valor">+50</span>
                         <span class="pontos-label">POINTS</span>
                     </div>
                 </div>
 
-                <div class="cartao-missao">
+                <!-- <div class="cartao-missao">
                     <label class="check-missao">
                         <input type="checkbox">
                         <span class="circulo"></span>
@@ -93,7 +99,7 @@
                         <span class="pontos-valor">+200</span>
                         <span class="pontos-label">POINTS</span>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="grid-inferior">
                     <div class="card-acao verde">
@@ -134,7 +140,7 @@
                 </div>
             </div>
 
-            <div class="cartao-ambiente">
+            <!-- <div class="cartao-ambiente">
                 <div class="cartao-ambiente-header">
                     <h3>Seu Ambiente</h3>
                     <div class="icone-arvore">🌲</div>
@@ -159,7 +165,7 @@
                         <div class="preenchimento" style="width: 40%;"></div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="secao-conquistas">
                 <h3 class="titulo-conquistas">Conquistas</h3>
@@ -185,17 +191,17 @@
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="card-impacto-imagem">
-                <img src="images/florest.png" alt="Floresta Amazônica">
+        <div class="card-impacto-imagem" id="impact-slideshow">
+                <img src="images/florest.png" alt="Floresta" class="slide-img active">
                 <div class="overlay-gradiente"></div>
                 <div class="texto-imagem">
                     <small class="tag-impacto">IMPACTO GLOBAL</small>
-                    <p class="titulo-impacto">Veja como usuários EcoTrack ajudaram a restaurar a Bacia Amazônica.</p>
+                    <p class="titulo-impacto" id="impact-text">Veja como usuários EcoTrack ajudaram a restaurar a Bacia Amazônica.</p>
                 </div>
             </div>
         </div>
-        </section>
 
 
     </main>
@@ -212,6 +218,33 @@
             <div class="lang-icons">🌐 🇧🇷</div>
         </div>
     </footer>
+
+    <nav class="mobile_nav">
+        <a href="home.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-house-door"></i>
+            </span>
+            <span class="nav_label">Home</span>
+        </a>
+        <a href="dashboard.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-speedometer2"></i>
+            </span>
+            <span class="nav_label">Dashboard</span>
+        </a>
+        <a href="calculador.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-calculator"></i>
+            </span>
+            <span class="nav_label">Calculador</span>
+        </a>
+        <a href="actions.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-check-circle"></i>
+            </span>
+            <span class="nav_label">Actions</span>
+        </a>
+    </nav>
 
 </body>
 

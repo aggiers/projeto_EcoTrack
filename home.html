@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoTrack - Dashboard</title>
+    <title>EcoTrack - Início</title>
     <link rel="stylesheet" href="css/home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <script src="js/auth.js"></script>
+
 <body>
 
     <header class="navbar">
@@ -72,17 +74,23 @@
 
         <section class="features-grid">
             <div class="feature-card">
-                <div class="card-icon blue-bg">🧮</div>
+                <div class="card-icon blue-bg">
+                    <img src="images/calcHome.svg" alt="">
+                </div>
                 <h3>Cálculo Preciso</h3>
                 <p>Algoritmos baseados em dados reais para calcular sua pegada de carbono em tempo real.</p>
             </div>
             <div class="feature-card">
-                <div class="card-icon water-bg">💧</div>
+                <div class="card-icon water-bg">
+                    <img src="images/waterHome.svg" alt="">
+                </div>
                 <h3>Recursos Hídricos</h3>
                 <p>Monitore seu consumo de água e descubra formas inteligentes de preservação diária.</p>
             </div>
             <div class="feature-card">
-                <div class="card-icon star-bg">✨</div>
+                <div class="card-icon star-bg">
+                    <img src="images/positiveActions.svg" alt="">
+                </div>
                 <h3>Ações Positivas</h3>
                 <p>Sugestões personalizadas de hábitos que geram impacto positivo imediato no ecossistema.</p>
             </div>
@@ -93,7 +101,7 @@
                 <h2>Pronto para pintar um futuro mais verde?</h2>
                 <p>Junte-se a milhares de usuários que já estão moldando o Living Canvas do nosso planeta.</p>
                 <button class="btn-cta">
-                    <a href="cadastro.html">Criar minha conta gratuita</a>
+                    <a href="cadastro.html">Criar minha conta</a>
                 </button>
             </div>
         </section>
@@ -111,6 +119,33 @@
             <div class="lang-icons">🌐 🇧🇷</div>
         </div>
     </footer>
+
+    <nav class="mobile_nav">
+        <a href="home.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-house-door"></i>
+            </span>
+            <span class="nav_label">Home</span>
+        </a>
+        <a href="dashboard.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-speedometer2"></i>
+            </span>
+            <span class="nav_label">Dashboard</span>
+        </a>
+        <a href="calculador.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-calculator"></i>
+            </span>
+            <span class="nav_label">Calculador</span>
+        </a>
+        <a href="actions.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-check-circle"></i>
+            </span>
+            <span class="nav_label">Actions</span>
+        </a>
+    </nav>
 
 </body>
 </html>
