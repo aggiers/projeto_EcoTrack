@@ -253,7 +253,7 @@ function initCadastro() {
       msg: 'Conta criada com sucesso. Vamos começar a transformar sua pegada ecológica.',
       btnText: 'Ir para o início →',
       type: 'success',
-      onClose: () => { window.location.href = 'home.html'; }
+      onClose: () => { window.location.href = 'index.html'; }
     });
   });
 }
@@ -266,7 +266,7 @@ function initLogin() {
 
   // Já logado? Redireciona
   if (getSession()) {
-    window.location.href = 'home.html';
+    window.location.href = 'index.html';
     return;
   }
 
@@ -337,7 +337,7 @@ function initLogin() {
       msg: 'Login realizado com sucesso. Bem-vindo(a) de volta ao EcoTrack.',
       btnText: 'Entrar na Eco →',
       type: 'success',
-      onClose: () => { window.location.href = 'home.html'; }
+      onClose: () => { window.location.href = 'index.html'; }
     });
   });
 }
