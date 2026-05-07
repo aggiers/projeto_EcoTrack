@@ -431,6 +431,89 @@ function initAvatar() {
   }
 }
 
+// ---------- Proteção de Rotas ----------
+
+function checkAuth() {
+  const session = getSession();
+  const path = window.location.pathname;
+
+  // Lista de páginas que EXIGEM login
+  const protectedPages = ['actions.html', 'calculador.html', 'dashboard.html'];
+
+  // Verifica se a página atual está na lista de protegidas
+  const isProtected = protectedPages.some(page => path.includes(page));
+
+  if (isProtected && !session) {
+    // Redireciona para cadastro se não houver sessão
+    window.location.href = 'cadastro.html';
+  }
+}
+
+// Chame a função dentro do DOMContentLoaded existente no auth.js
+document.addEventListener('DOMContentLoaded', function () {
+  checkAuth(); // <-- Adicione esta linha no topo
+  
+  const path = window.location.pathname;
+  // ... resto do seu código initCadastro, initLogin, etc
+});
+
+function checkAuth() {
+  const session = getSession();
+  const path = window.location.pathname;
+
+  // Lista atualizada incluindo os Quizzes
+  const protectedPages = [
+    'actions.html', 
+    'calculador.html', 
+    'dashboard.html',
+    'socioambiental.html', 
+    'socioeconomico.html', 
+    'climaticoglobal.html'
+  ];
+
+  const isProtected = protectedPages.some(page => path.includes(page));
+
+  if (isProtected && !session) {
+    // Se tentar acessar o quiz sem login, vai para o cadastro
+    window.location.href = '../cadastro.html'; 
+  } else {
+    document.body.style.display = 'block';
+  }
+}
+
+function interceptQuizClicks() {
+  const session = getSession();
+  if (session) return; // Se estiver logado, não faz nada
+
+  // Seleciona todos os botões de "Iniciar" dos quizzes
+  const quizButtons = document.querySelectorAll('.btn-start');
+
+  quizButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault(); // Impede a navegação direta
+      
+      showAlert({
+        icon: '🔒',
+        title: 'Acesso Restrito',
+        msg: 'Você precisa estar cadastrado para participar dos nossos desafios educativos e ganhar pontos.',
+        btnText: 'Criar conta agora',
+        type: 'info',
+        onClose: () => {
+          window.location.href = 'cadastro.html';
+        }
+      });
+    });
+  });
+}
+
+// Chame esta função no init geral
+document.addEventListener('DOMContentLoaded', function () {
+  // ... código existente ...
+  if (window.location.pathname.includes('saibamais.html')) {
+    interceptQuizClicks();
+  }
+});
+
 // ---------- Init ----------
 
 document.addEventListener('DOMContentLoaded', function () {

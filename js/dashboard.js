@@ -74,20 +74,7 @@ function calcularRankRegiao(ecoScore) {
     return 'Continue para subir no rank!';
 }
 
-// ---------- Pegada de Carbono ----------
 
-function formatarPegada(kgCO2) {
-    if (kgCO2 == null) return null;
-    return (kgCO2 / 1000).toFixed(1);
-}
-
-function calcularVariacaoPegada(kgCO2) {
-    // Comparação com média brasileira (2400 kg CO2e/ano)
-    const media = 2400;
-    if (kgCO2 == null) return null;
-    const diff = Math.round(((media - kgCO2) / media) * 100);
-    return diff; // positivo = melhor que a média, negativo = pior
-}
 
 // ---------- Rank da comunidade ----------
 

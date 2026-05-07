@@ -10,18 +10,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
+<script src="js/auth.js"></script>
+<script src="../js/quiz2.js" defer></script>
 <body>
 
     <header class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <a href="index.html">EcoTrack</a>
+                <a href="../index.html">EcoTrack</a>
             </div>
             <nav class="menu-links">
                 <ul>
-                    <li><a href="dashboard.html">Dashboard</a></li>
-                    <li><a href="calculador.html">Calculador</a></li>
-                    <li><a href="actions.html">Ações</a></li>
+                    <li><a href="../dashboard.html">Dashboard</a></li>
+                    <li><a href="../calculador.html">Calculador</a></li>
+                    <li><a href="../actions.html">Ações</a></li>
                 </ul>
             </nav>
             <div class="nav-icons">
@@ -29,6 +31,92 @@
             </div>
         </div>
     </header>
+
+
+    <section class="progress-section">
+        <div class="progress-container">
+            <span class="quiz-category">QUIZ SOCIOECONÔMICO</span>
+            
+            <h1 class="progress-title">Conhecimento que transforma.</h1>
+            
+            <div class="progress-info-wrapper">
+                <span class="progress-counter">01 / 03</span>
+                <div class="progress-bar-wrapper">
+                    <div class="progress-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quiz-content">
+        <div class="bento-grid">
+            <div class="right-column">
+                <div class="options-list">
+                    <div class="option-item">
+                        <span class="option-letter">A</span>
+                        <div class="option-text">
+                            <strong>Pecuária e soja</strong>
+                            <p>Expansão de fronteiras agrícolas e pastagens.</p>
+                        </div>
+                        <i class="bi bi-chevron-right"></i>
+                    </div>
+
+                    <div class="option-item">
+                        <span class="option-letter">B</span>
+                        <div class="option-text">
+                            <strong>Turismo sustentável</strong>
+                            <p>Visitação controlada em parques nacionais.</p>
+                        </div>
+                        <i class="bi bi-chevron-right"></i>
+                    </div>
+
+                    <div class="option-item">
+                        <span class="option-letter">C</span>
+                        <div class="option-text">
+                            <strong>Reflorestamento natural</strong>
+                            <p>Recuperação espontânea de áreas degradadas.</p>
+                        </div>
+                        <i class="bi bi-chevron-right"></i>
+                    </div>
+                </div>
+
+                <div class="quiz-actions">
+                    <button class="btn-confirm">Confirmar resposta</button>
+                    <button class="btn-next">
+                        <a href="socioeconomico2.html">Próximo</a>
+                    </button>
+                </div>
+
+                <div class="did-you-know-card">
+                    <div class="dyk-icon">
+                        <i class="bi bi-lightbulb"></i>
+                    </div>
+                    <div class="dyk-text">
+                        <strong>Você sabia?</strong>
+                        <p>Cerca de 80% das áreas desmatadas na Amazônia são transformadas em pastagens para criação de gado.</p>
+                    </div>
+                </div>
+                <button class="voltar">
+                    <a href="../saibamais.html">Voltar ao Artigo</a>
+                </button>
+            </div>
+
+            <div class="left-column">
+                <div class="question-card">
+                    <h2>Qual a principal causa do desmatamento na Amazônia?</h2>
+                    <p>A Amazônia é vital para o equilíbrio climático global. Entender as pressões que a floresta sofre é o primeiro passo para protegê-la.</p>
+                </div>
+                <div class="media-card">
+                    <img src="../images/economico.jpg" alt="Impacto Ambiental">
+                    <div class="media-tag">
+                        <i class="bi bi-info-circle"></i> IMPACTO REAL
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
 
     <footer class="footer">
@@ -43,6 +131,33 @@
             <div class="lang-icons">🌐 🇧🇷</div>
         </div>
     </footer>
+
+    <nav class="mobile_nav">
+        <a href="../index.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-house-door"></i>
+            </span>
+            <span class="nav_label">Home</span>
+        </a>
+        <a href="../dashboard.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-speedometer2"></i>
+            </span>
+            <span class="nav_label">Dashboard</span>
+        </a>
+        <a href="../calculador.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-calculator"></i>
+            </span>
+            <span class="nav_label">Calculador</span>
+        </a>
+        <a href="../actions.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-check-circle"></i>
+            </span>
+            <span class="nav_label">Actions</span>
+        </a>
+    </nav>
     
 </body>
 </html>

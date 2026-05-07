@@ -90,9 +90,444 @@ header nav ul li {
     border: 2px solid var(--primary-light);
 }
 
+/* Introdução */
+.hero-section {
+    padding: 80px 5%;
+    display: flex;
+    justify-content: center;
+    background-color: #F8F9FF; /* Cor de fundo condizente com o body */
+}
+
+.hero-container {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.hero-subtitle {
+    display: block;
+    color: #008a5e; /* var(--primary) */
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    color: #111827; /* Tom de azul escuro quase preto da imagem */
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+.hero-highlight {
+    color: #006b4a;
+    font-style: italic;
+}
+
+.hero-section p{
+    width: 90%;
+}
 
 
 
+/* Seção Amazônia */
+.amazon-section {
+    padding: 60px 5%;
+    display: flex;
+    justify-content: center;
+    background-color: #F8F9FF;
+}
+
+.amazon-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.amazon-image {
+    flex: 1;
+}
+
+.amazon-image img {
+    width: 100%;
+    border-radius: 40px; 
+    display: block;
+}
+
+
+
+.amazon-content {
+    flex: 1;
+}
+
+.amazon-subtitle {
+    color: #008a5e;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.amazon-title {
+    font-size: 2.5rem;
+    color: #1e293b;
+    margin: 15px 0;
+    font-weight: 700;
+}
+
+.amazon-text {
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Cards de Impacto */
+.impact-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card {
+    background: #dbeafe; /* Tom azulado claro de fundo dos cards */
+    padding: 15px 25px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #1e293b;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.card i {
+    color: #008a5e;
+    font-size: 1.2rem;
+}
+
+
+/* Seção Alasca */
+.alaska-section {
+    padding: 60px 5%;
+    display: flex;
+    justify-content: center;
+    background-color: #EFF4FF;
+}
+
+.alaska-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.alaska-content {
+    flex: 1;
+}
+
+.alaska-subtitle {
+    color: #006b9b; /* Tom de azul do subtítulo no Alasca */
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.alaska-title {
+    font-size: 2.5rem;
+    color: #1e293b;
+    margin: 15px 0;
+    font-weight: 700;
+}
+
+.alaska-text {
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Card Informativo Azul */
+.info-card {
+    background: #dbeafe; /* var(--accent-blue) */
+    padding: 20px 25px;
+    border-radius: 30px 0px 30px 30px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.info-card i {
+    color: #006b9b;
+    font-size: 1.5rem;
+}
+
+.info-card-text strong {
+    display: block;
+    font-size: 1rem;
+    color: #1e293b;
+    margin-bottom: 5px;
+}
+
+.info-card-text p {
+    font-size: 0.85rem;
+    color: #000;
+    line-height: 1.4;
+}
+
+.alaska-image {
+    flex: 1;
+}
+
+.alaska-image img {
+    width: 100%;
+    border-radius: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05); /* Sombra suave para destacar do fundo */
+}
+
+/* Seção de Comparação */
+.comparison-section {
+    padding: 60px 5% 100px;
+    display: flex;
+    justify-content: center;
+    background-color: #F8F9FF;
+}
+
+.comparison-container {
+    width: 100%;
+    max-width: 1100px;
+}
+
+.comparison-header {
+    text-align: center;
+    font-size: 2rem;
+    color: #0f172a;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.table-wrapper {
+    background: white;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+/* Cabeçalho da Tabela */
+.comparison-table thead th {
+    background-color: #eef2ff; 
+    padding: 25px 40px;
+    color: #1e293b;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.comparison-table .col-amazonia { color: var(--primary); }
+.comparison-table .col-alasca { color: #006b9b; }
+
+/* Corpo da Tabela */
+.comparison-table tbody td {
+    padding: 30px 40px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #475569;
+    font-size: 1rem;
+}
+
+.comparison-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.comparison-table .row-label {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.comparison-table em {
+    font-style: italic;
+    color: #64748b;
+}
+
+
+/* Secção Fator Humano */
+.human-factor-section {
+    padding: 80px 5%;
+    display: flex;
+    justify-content: center;
+    background-color: #F8F9FF;
+    text-align: center;
+}
+
+.human-container {
+    width: 100%;
+    max-width: 900px;
+}
+
+.human-title {
+    font-size: 2rem;
+    color: #0f172a;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.human-description {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #475569;
+    margin-bottom: 50px;
+}
+
+/* Card de Estatísticas */
+.stats-card {
+    background-color: #eef2ff; /* Tom azul claro de fundo */
+    display: inline-flex;
+    align-items: center;
+    padding: 40px 60px;
+    border-radius: 100px; /* Formato pílula conforme a imagem */
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.stat-value.green { color: #006b4a; }
+.stat-value.blue { color: #006b9b; }
+
+.stat-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: #64748b;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 60px;
+    background-color: #cbd5e1;
+}
+
+
+/* Seção de Quizzes */
+.quiz-section {
+    padding: 80px 5%;
+    display: flex;
+    justify-content: center;
+    background-color: #F8F9FF;
+}
+
+.quiz-container {
+    width: 100%;
+    max-width: 1200px;
+    text-align: left;
+}
+
+.quiz-main-title {
+    font-size: 2.2rem;
+    color: #0f172a;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.quiz-main-subtitle {
+    color: #64748b;
+    margin-bottom: 50px;
+    font-size: 1.1rem;
+}
+
+/* Grid de Cards */
+.quiz-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.quiz-card {
+    background: white;
+    padding: 40px;
+    border-radius: 40px; /* Bordas bem arredondadas do design */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.quiz-card:hover {
+    transform: translateY(-5px);
+}
+
+.quiz-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+/* Cores dos Ícones baseadas no SVG */
+.icon-green { background-color: #e6f4f1; color: #008a5e; }
+.icon-blue-light { background-color: #e0f2fe; color: #0284c7; }
+.icon-blue-dark { background-color: #eef2ff; color: #3730a3; }
+
+.quiz-card h3 {
+    font-size: 1.4rem;
+    color: #0f172a;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.quiz-card p {
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+/* Botão Start */
+.btn-start {
+    display: block;
+    text-align: center;
+    background-color: var(--accent-blue);
+    color: #1e293b;
+    text-decoration: none;
+    padding: 15px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.btn-start:hover {
+    background-color: #cbd5e1;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .quiz-main-title { text-align: center; }
+    .quiz-main-subtitle { text-align: center; }
+}
 
 
 
@@ -110,3 +545,179 @@ header nav ul li {
 
 .footer-right { display: flex; gap: 20px; align-items: center; }
 .footer-right a { text-decoration: none; color: inherit; font-weight: 700; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Configuração da Barra Inferior */
+.mobile_nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background-color: white;
+    display: none; /* Escondido no desktop */
+    grid-template-columns: repeat(4, 1fr);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    border-top: 1px solid #eee;
+    z-index: 1000;
+}
+
+.nav_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-gray);
+    transition: 0.3s;
+}
+
+
+.nav_item span{
+    color: var(--text-gray);
+}
+
+.nav_item span i{
+    font-size: 20px;
+
+}
+
+.nav_label {
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.nav_item span:hover {
+    color: var(--primary);
+    font-weight: 800;
+}
+
+@media (max-width: 768px) {
+    .mobile_nav {
+        display: grid;
+    }
+
+    /* Ajuste para o conteúdo não ficar escondido atrás da barra */
+    body {
+        padding-bottom: 70px;
+    }
+
+    .menu-links {
+        display: none;
+    }
+}
+
+
+/* Responsividade Básica */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .hero-description {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 968px) {
+    .amazon-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .card {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 968px) {
+    .alaska-container {
+        flex-direction: column-reverse; /* Inverte para a imagem ficar em cima no mobile */
+        text-align: center;
+    }
+    .info-card {
+        text-align: left;
+    }
+}
+
+@media (max-width: 768px) {
+    .comparison-table thead th, 
+    .comparison-table tbody td {
+        padding: 15px 20px;
+        font-size: 0.8rem;
+    }
+    .comparison-header {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-card {
+        flex-direction: column;
+        padding: 40px;
+        border-radius: 40px;
+        width: 100%;
+    }
+    .stat-divider {
+        width: 60px;
+        height: 1px;
+    }
+    .human-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .footer-right {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .footer-left p {
+        margin-top: 5px;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

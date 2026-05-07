@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
+<script src="js/auth.js"></script>
+<script src="js/resultadoQuiz.js" defer></script>
 <body>
 
     <header class="navbar">
@@ -30,6 +32,112 @@
         </div>
     </header>
 
+    <section class="result-hero">
+        <div class="result-container">
+            <div class="result-badge">
+                <i class="bi bi-trophy-fill"></i>
+                <span>QUIZ CONCLUÍDO</span>
+            </div>
+
+            <h1 class="result-title">Incrível, <span id="user-name-display">Agatha</span>!</h1>
+            <p class="result-subtitle">
+                Você demonstrou um profundo conhecimento sobre os biomas e a 
+                importância da preservação socioambiental.
+            </p>
+
+            <div class="score-card">
+                <div class="score-item">
+                    <span id="total-acertos" class="score-number">00</span>
+                    <span class="score-label">ACERTOS</span>
+                </div>
+                <div class="score-divider"></div>
+                <div class="score-item">
+                    <span id="total-questoes" class="score-number">09</span>
+                    <span class="score-label">TOTAL</span>
+                </div>
+                <div class="score-divider"></div>
+                <div class="score-item">
+                    <span id="quizzes-completos" class="score-number">0/3</span>
+                    <span class="score-label">QUIZZES</span>
+                </div>
+            </div>
+
+            <!-- Detalhe por quiz -->
+
+            <div class="result-actions">
+                <a href="actions.html" class="btn-action primary">Ver Ações Práticas</a>
+                <a href="saibamais.html" class="btn-action secondary">Voltar ao Artigo</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="insights-section">
+        <div class="insights-container">
+            <h2 class="insights-main-title">Insights do Especialista</h2>
+            
+            <div class="insights-grid">
+                <div class="insight-card highlight">
+                    <div class="insight-badge">ESTATÍSTICA CHAVE</div>
+                    <h3>A Força dos Rios Voadores</h3>
+                    <p>A evapotranspiração da Amazônia bombeia para a atmosfera volumes de água equivalentes ao fluxo do próprio Rio Amazonas, regulando as chuvas em todo o continente.</p>
+                    <div class="insight-footer">
+                        <span class="source">FONTE: INPE 2026</span>
+                    </div>
+                </div>
+
+                <div class="insights-side-column">
+                    <div class="insight-card small">
+                        <div class="insight-icon green">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <div>
+                            <h4>Resiliência Biótica</h4>
+                            <p>Florestas preservadas são 50% mais resistentes a incêndios naturais.</p>
+                        </div>
+                    </div>
+
+                    <div class="insight-card small">
+                        <div class="insight-icon blue">
+                            <i class="bi bi-thermometer-snow"></i>
+                        </div>
+                        <div>
+                            <h4>Albedo Glacial</h4>
+                            <p>O gelo do Alasca reflete até 85% da radiação solar de volta ao espaço.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="highlight-cta-section">
+        <div class="highlight-container">
+            <div class="highlight-content">
+                <h2 class="highlight-title">O futuro é construído por <span class="text-italic">quem se importa.</span></h2>
+                <p class="highlight-text">
+                    Sua jornada de aprendizado não termina aqui. Compartilhe seu resultado 
+                    e ajude a espalhar a consciência ambiental para mais pessoas.
+                </p>
+                
+                <div class="social-share">
+                    <button class="btn-share">
+                        <i class="bi bi-share"></i> Compartilhar Desempenho
+                    </button>
+                </div>
+            </div>
+            
+            <div class="highlight-image-box">
+                <div class="abstract-shape">
+                    <i class="bi bi-seedling"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
 
     <footer class="footer">
         <div class="footer-left">
@@ -43,6 +151,32 @@
             <div class="lang-icons">🌐 🇧🇷</div>
         </div>
     </footer>
-    
+
+        <nav class="mobile_nav">
+        <a href="index.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-house-door"></i>
+            </span>
+            <span class="nav_label">Home</span>
+        </a>
+        <a href="dashboard.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-speedometer2"></i>
+            </span>
+            <span class="nav_label">Dashboard</span>
+        </a>
+        <a href="calculador.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-calculator"></i>
+            </span>
+            <span class="nav_label">Calculador</span>
+        </a>
+        <a href="actions.html" class="nav_item">
+            <span class="nav_icon">
+                <i class="bi bi-check-circle"></i>
+            </span>
+            <span class="nav_label">Actions</span>
+        </a>
+    </nav>
 </body>
 </html>
