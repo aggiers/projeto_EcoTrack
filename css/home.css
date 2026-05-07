@@ -152,6 +152,11 @@ header nav ul li {
     cursor: pointer;
 }
 
+.btn-secondary a{
+  color: #000;
+  text-decoration: none;
+}
+
 /* Hero Image & Floating Stat */
 .hero-image-container {
     flex: 1;
