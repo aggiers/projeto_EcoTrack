@@ -1,6 +1,6 @@
 // =============================================
 //  EcoTrack — actions.js
-//  Missões Diárias, Pontos, Conquistas, Meta
+//  missões diárias, pontos, conquistas, meta
 // =============================================
 
 const MISSIONS_KEY = 'ecotrack_daily_missions';   // missões do dia + progresso
@@ -8,7 +8,7 @@ const POINTS_KEY = 'ecotrack_points';           // pontos totais por e-mail
 const ACHIEV_KEY = 'ecotrack_achievements';     // conquistas por e-mail
 const STREAK_KEY = 'ecotrack_streak';           // streak por e-mail
 
-// ---------- Pool completo de missões ----------
+// ---------- pool completo de missões ----------
 
 const MISSION_POOL = [
     { id: 'agua', title: 'Economizar água', desc: 'Reduza o tempo de banho para 5 min.', badge: 'ECONOMIZADOR DE ÁGUA', points: 50 },
@@ -25,7 +25,7 @@ const MISSION_POOL = [
     { id: 'digital', title: 'Detox digital', desc: 'Fique 2h sem telas para reduzir consumo.', badge: 'TECNOLOGIA CONSCIENTE', points: 55 },
 ];
 
-// ---------- Definição de conquistas ----------
+// ---------- definição de conquistas ----------
 
 const ACHIEVEMENT_DEFS = [
     {
@@ -86,7 +86,7 @@ const ACHIEVEMENT_DEFS = [
     },
 ];
 
-// ---------- Utilitários ----------
+// ---------- utilitários ----------
 
 function getTodayKey() {
     const d = new Date();
@@ -131,7 +131,7 @@ function saveStreak(email, streak) {
     localStorage.setItem(`${STREAK_KEY}_${email}`, JSON.stringify(streak));
 }
 
-// ---------- Missões diárias com rotação ----------
+// ---------- missões diárias com rotação ----------
 
 function getDailyMissions(email) {
     const key = `${MISSIONS_KEY}_${email}`;
@@ -139,10 +139,10 @@ function getDailyMissions(email) {
 
     if (raw) {
         const data = JSON.parse(raw);
-        if (data.day === getTodayKey()) return data; // mesmo dia, retorna salvo
+        if (data.day === getTodayKey()) return data; 
     }
 
-    // Novo dia: sorteia 3 missões aleatórias sem repetir
+    // novo dia: sorteia 3 missões aleatórias sem repetir
     const shuffled = [...MISSION_POOL].sort(() => Math.random() - 0.5);
     const selected = shuffled.slice(0, 3);
 
@@ -160,17 +160,17 @@ function saveDailyMissions(email, data) {
     localStorage.setItem(`${MISSIONS_KEY}_${email}`, JSON.stringify(data));
 }
 
-// ---------- Renderização ----------
+// ---------- renderização ----------
 
 function renderMissions(email) {
     const data = getDailyMissions(email);
     const container = document.querySelector('.secao-missoes');
     if (!container) return;
 
-    // Remove cartões antigos (mantém cabeçalho e grid inferior)
+    // remove cartões antigos (mantém cabeçalho e grid inferior)
     container.querySelectorAll('.cartao-missao').forEach(el => el.remove());
 
-    // Calcula XP do dia
+    // calcula XP do dia
     const xpHoje = data.missions
         .filter(m => data.completed.includes(m.id))
         .reduce((acc, m) => acc + m.points, 0);
@@ -205,7 +205,7 @@ function renderMissions(email) {
 
         container.insertBefore(card, gridInferior);
 
-        // Evento de check
+        // evento de check
         const checkbox = card.querySelector('input[type="checkbox"]');
         checkbox.addEventListener('change', () => onMissionToggle(email, mission, checkbox.checked));
     });
@@ -218,7 +218,7 @@ function updateProgressRing(data) {
     const completed = data.completed.length;
     const pct = total ? Math.round((completed / total) * 100) : 0;
 
-    // Texto central
+    // texto central
     const pctEl = document.querySelector('.porcentagem-anel');
     if (pctEl) pctEl.textContent = pct + '%';
 
@@ -235,7 +235,7 @@ function updateProgressRing(data) {
     }
 }
 
-// ---------- Lógica de toggle de missão ----------
+// ---------- lógica de toggle de missão ----------
 
 function onMissionToggle(email, mission, isChecked) {
     const data = getDailyMissions(email);
@@ -245,12 +245,12 @@ function onMissionToggle(email, mission, isChecked) {
         if (!data.completed.includes(mission.id)) {
             data.completed.push(mission.id);
 
-            // Atualiza pontos e contagens
+            // atualiza pontos e contagens
             stats.totalPoints += mission.points;
             stats.totalCompleted += 1;
             stats.missionCounts[mission.id] = (stats.missionCounts[mission.id] || 0) + 1;
 
-            // Dia perfeito?
+            // dia perfeito?
             if (data.completed.length === data.missions.length) {
                 stats.hadPerfectDay = true;
                 updateStreakOnPerfectDay(email, stats);
@@ -270,14 +270,14 @@ function onMissionToggle(email, mission, isChecked) {
     saveDailyMissions(email, data);
     saveUserStats(email, stats);
 
-    // Re-renderiza cartão
+    // re-renderiza cartão
     const card = document.querySelector(`[data-mission-id="${mission.id}"]`);
     if (card) {
         if (isChecked) card.classList.add('concluido');
         else card.classList.remove('concluido');
     }
 
-    // Atualiza XP e anel
+    // atualiza XP e anel
     const xpHoje = data.missions
         .filter(m => data.completed.includes(m.id))
         .reduce((acc, m) => acc + m.points, 0);
@@ -289,7 +289,7 @@ function onMissionToggle(email, mission, isChecked) {
     checkAndUnlockAchievements(email, stats);
 }
 
-// ---------- Streak ----------
+// ---------- streak ----------
 
 function updateStreakOnPerfectDay(email, stats) {
     const today = getTodayKey();
@@ -316,7 +316,7 @@ function updateStreakOnPerfectDay(email, stats) {
     saveStreak(email, streak);
 }
 
-// ---------- Conquistas ----------
+// ---------- conquistas ----------
 
 function checkAndUnlockAchievements(email, stats) {
     const unlocked = getUserAchievements(email);
@@ -346,7 +346,7 @@ function renderAchievements(email) {
 
     grade.innerHTML = '';
 
-    // Mostra desbloqueadas primeiro, depois bloqueadas (máx 6 no grid)
+    // mostra desbloqueadas primeiro, depois bloqueadas (máx 6 no grid)
     const sorted = [
         ...ACHIEVEMENT_DEFS.filter(a => unlocked.includes(a.id)),
         ...ACHIEVEMENT_DEFS.filter(a => !unlocked.includes(a.id)),
@@ -367,14 +367,14 @@ function renderAchievements(email) {
     });
 }
 
-// ---------- Pontos totais no header (opcional) ----------
+// ---------- pontos totais no header ----------
 
 function updateTotalPointsDisplay(stats) {
     const el = document.querySelector('.total-points-display');
     if (el) el.textContent = stats.totalPoints + ' pts';
 }
 
-// Adicione este array e função ao seu arquivo actions.js
+// função de imagem que muda
 const impactData = [
     {
         img: 'images/imageImpacto.png',
@@ -400,54 +400,51 @@ function startImpactSlideshow() {
     const container = document.getElementById('impact-slideshow');
     const textEl = document.getElementById('impact-text');
     
-    // Verificação de segurança para evitar erros se o elemento não existir na página
+    // verificação para evitar erros se o elemento não existir na página
     if (!container || !textEl) return;
 
-    // 1. Limpa o container para garantir que as imagens sejam inseridas corretamente
-    // Mantemos apenas o overlay e o texto
+    // limpa o container para garantir que as imagens sejam inseridas normalmente, 
+    // mantendo o overlay e o texto
     const overlay = container.querySelector('.overlay-gradiente');
     const textoContainer = container.querySelector('.texto-imagem');
 
-    // 2. Cria as tags de imagem para cada item do array
+    // cria as tags de imagem para cada item do array
     impactData.forEach((item, index) => {
         const img = document.createElement('img');
         img.src = item.img;
         img.alt = "Impacto Ambiental";
         img.className = 'slide-img' + (index === 0 ? ' active' : '');
-        // Inserimos antes do overlay para que o gradiente fique por cima
+        // inserindo antes do overlay para que o gradiente fique por cima
         container.insertBefore(img, overlay);
     });
 
     const slides = container.querySelectorAll('.slide-img');
 
-    // 3. Lógica de transição
+    // lógica de transição
     setInterval(() => {
-        // Remove classe ativa do slide atual
+        // remove classe ativa do slide atual
         slides[currentSlide].classList.remove('active');
 
-        // Calcula o próximo índice
+        // calcula o próximo índice
         currentSlide = (currentSlide + 1) % slides.length;
 
-        // Adiciona classe ativa ao novo slide
+        // adiciona classe ativa ao novo slide
         slides[currentSlide].classList.add('active');
         
-        // Atualiza o texto com um leve delay para sincronizar com o desfoque
+        // atualiza o texto com um leve delay para sincronizar com o desfoque
         setTimeout(() => {
             textEl.textContent = impactData[currentSlide].text;
         }, 600);
 
-    }, 5000); // Troca a cada 5 segundos
+    }, 5000); // troca a cada 5 segundos
 }
 
-// Certifique-se de chamar a função dentro do carregamento do documento
+// chamando a função dentro do carregamento do documento
 document.addEventListener('DOMContentLoaded', function () {
-    // ... suas outras lógicas (renderMissions, etc)
     startImpactSlideshow();
 });
 
-// ---------- Toasts de feedback ----------
-
-
+// ---------- toasts de feedback ----------
 
 function showPointsToast(points) {
     const toast = document.createElement('div');
@@ -512,13 +509,13 @@ function injectToastStyles() {
     document.head.appendChild(s);
 }
 
-// ---------- Init ----------
+// ---------- inicializando ----------
 
 document.addEventListener('DOMContentLoaded', function () {
     const email = getUserEmail();
 
     if (!email) {
-        // Usuário não logado: mostra missões estáticas sem interação
+        // usuário não logado: mostra missões sem interação
         return;
     }
 
