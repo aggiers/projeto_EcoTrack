@@ -1,10 +1,10 @@
 // =============================================
-// EcoTrack - Quiz Climático Global
-// quiz_climaticoglobal.js — Lógica central do quiz
+// EcoTrack - quiz3.js
+// lógica do quiz climático global
 // =============================================
 
 const quizData = [
-    // Questão 1 — climaticoglobal.html
+ 
     {
         page: 1,
         total: 3,
@@ -46,7 +46,7 @@ const quizData = [
         nextLabel: "Próximo",
     },
 
-    // Questão 2 — climaticoglobal2.html
+  
     {
         page: 2,
         total: 3,
@@ -88,7 +88,7 @@ const quizData = [
         nextLabel: "Próximo",
     },
 
-    // Questão 3 — climaticoglobal3.html
+
     {
         page: 3,
         total: 3,
@@ -131,7 +131,7 @@ const quizData = [
     },
 ];
 
-// ── Detecta qual página está rodando ──────────────────────────────────────────
+
 function detectCurrentPage() {
     const path = window.location.pathname;
     if (path.includes("climaticoglobal3")) return 3;
@@ -139,14 +139,14 @@ function detectCurrentPage() {
     return 1;
 }
 
-// ── Renderiza os dados da questão no DOM ──────────────────────────────────────
+
 function renderQuiz(data) {
-    // Progresso — barra animada
+    
     const fill = document.querySelector(".progress-bar-fill");
     const counter = document.querySelector(".progress-counter");
 
     if (fill) {
-        // Inicia em 0 e anima até o valor correto
+        
         fill.style.width = "0%";
         fill.style.transition = "none";
         requestAnimationFrame(() => {
@@ -163,7 +163,7 @@ function renderQuiz(data) {
         counter.textContent = `${pageStr} / ${totalStr}`;
     }
 
-    // Pergunta e descrição
+    
     const qCard = document.querySelector(".question-card");
     if (qCard) {
         const h2 = qCard.querySelector("h2");
@@ -172,7 +172,7 @@ function renderQuiz(data) {
         if (p)  p.textContent  = data.description;
     }
 
-    // Alternativas
+    
     const optionsList = document.querySelector(".options-list");
     if (optionsList) {
         optionsList.innerHTML = "";
@@ -193,38 +193,35 @@ function renderQuiz(data) {
         });
     }
 
-    // Botão Próximo / Finalizar
+    
     const btnNext = document.querySelector(".btn-next");
     if (btnNext) {
         btnNext.innerHTML = `<a href="${data.nextPage}">${data.nextLabel}</a>`;
     }
 
-    // Botão Voltar
+    
     const btnVoltar = document.querySelector(".voltar");
     if (btnVoltar) {
         btnVoltar.innerHTML = `<a href="${data.backPage}">${data.backLabel}</a>`;
     }
 
-    // Você sabia?
+    
     const dykText = document.querySelector(".dyk-text p");
     if (dykText) dykText.textContent = data.didYouKnow;
 }
 
-// ── Lógica de seleção e confirmação ───────────────────────────────────────────
 
-// ── Chave única de storage por quiz e página ──────────────────────────────────
 function storageKey(quizId, page) {
     return `ecotrack_quiz_${quizId}_page${page}`;
 }
 
-// ── Salva resposta no localStorage ────────────────────────────────────────────
+
 function saveAnswer(quizId, page, selectedIndex) {
     try {
         localStorage.setItem(storageKey(quizId, page), String(selectedIndex));
     } catch (e) {}
 }
 
-// ── Recupera resposta salva (ou null) ─────────────────────────────────────────
 function loadAnswer(quizId, page) {
     try {
         const val = localStorage.getItem(storageKey(quizId, page));
@@ -234,7 +231,6 @@ function loadAnswer(quizId, page) {
     }
 }
 
-// ── Aplica estado visual de resposta já confirmada ────────────────────────────
 function restoreConfirmedState(data, savedIndex) {
     const items = document.querySelectorAll(".option-item");
     items.forEach((el, idx) => {
@@ -262,20 +258,20 @@ function initQuizInteraction(data) {
     let selectedIndex = null;
     let confirmed = false;
 
-    // Restaura resposta salva
+    
     const saved = loadAnswer(QUIZ_ID, data.page);
     if (saved !== null) {
         selectedIndex = saved;
         confirmed = true;
-        // Aguarda DOM renderizado pelo renderQuiz
+        
         requestAnimationFrame(() => restoreConfirmedState(data, saved));
     }
 
-    // Delegação de eventos para clique nas opções
+    
     document.addEventListener("click", function (e) {
         const item = e.target.closest(".option-item");
         if (item && !confirmed) {
-            // Remove seleção anterior
+            
             document.querySelectorAll(".option-item").forEach((el) => {
                 el.classList.remove("selected");
             });
@@ -284,7 +280,7 @@ function initQuizInteraction(data) {
         }
     });
 
-    // Botão confirmar
+    
     const btnConfirm = document.querySelector(".btn-confirm");
     if (btnConfirm) {
         btnConfirm.addEventListener("click", function () {
@@ -295,7 +291,7 @@ function initQuizInteraction(data) {
             if (confirmed) return;
             confirmed = true;
             saveAnswer(QUIZ_ID, data.page, selectedIndex);
-            // Salva acerto/erro para a página de resultado
+            
             const wasCorrect = data.options[selectedIndex].correct;
             try {
                 localStorage.setItem(
@@ -318,7 +314,7 @@ function initQuizInteraction(data) {
                         feedbackEl.style.animation = "fadeInFeedback 0.4s ease";
                     }
                 } else if (isCorrect) {
-                    // Destaca a correta caso o usuário tenha errado
+                    
                     el.classList.add("correct");
                 }
             });
@@ -332,15 +328,15 @@ function initQuizInteraction(data) {
 
 
 
-// ── Animação de shake quando nenhuma opção foi selecionada ────────────────────
+
 function shakeButton(btn) {
     btn.style.animation = "none";
-    btn.offsetHeight; // força reflow
+    btn.offsetHeight; 
     btn.style.animation = "shake 0.4s ease";
     setTimeout(() => (btn.style.animation = ""), 400);
 }
 
-// ── Injeta estilos de animação e estados visuais dinamicamente ────────────────
+
 function injectStyles() {
     const style = document.createElement("style");
     style.textContent = `
@@ -358,7 +354,7 @@ function injectStyles() {
             80%       { transform: translateX(4px); }
         }
 
-        /* ── Feedback oculto por padrão ── */
+        
         .feedback {
             display: none;
             margin-top: 8px;
@@ -368,7 +364,7 @@ function injectStyles() {
             line-height: 1.5;
         }
 
-        /* ── Estado: selecionado ── */
+      
         .option-item.selected {
             background: #eef2ff;
             border: 2px solid #6366f1;
@@ -380,7 +376,7 @@ function injectStyles() {
             color: white;
         }
 
-        /* ── Estado: correto ── */
+    
         .option-item.correct {
             background: #f0fdf4;
             border: 2px solid #16a34a;
@@ -395,7 +391,7 @@ function injectStyles() {
             color: #16a34a;
         }
 
-        /* ── Estado: errado ── */
+        
         .option-item.wrong {
             background: #fff1f2;
             border: 2px solid #dc2626;
@@ -409,8 +405,8 @@ function injectStyles() {
         .option-item.wrong .option-arrow {
             color: #dc2626;
         }
-
-        /* ── Transição suave nas opções ── */
+        
+        
         .option-item {
             transition: all 0.25s ease, border 0.2s ease;
             border: 2px solid transparent;
@@ -419,7 +415,7 @@ function injectStyles() {
     document.head.appendChild(style);
 }
 
-// ── Init ──────────────────────────────────────────────────────────────────────
+
 document.addEventListener("DOMContentLoaded", function () {
     injectStyles();
     const pageNum = detectCurrentPage();
