@@ -1,9 +1,9 @@
 // =============================================
 //  EcoTrack — dashboard.js
-//  Dados reais do usuário logado no dashboard
+//  dados reais do usuário logado no dashboard
 // =============================================
 
-// ---------- Utilitários (espelha auth.js / actions.js) ----------
+// ---------- utilitários (espelha auth.js / actions.js) ----------
 
 function getSession() {
     return JSON.parse(localStorage.getItem('ecotrack_session') || 'null');
@@ -42,17 +42,17 @@ function getDailyMissions(email) {
 }
 
 function getPegadaCO2(session) {
-    // Pega do session ou do array de usuários
+    // pega do session ou do array de usuários
     if (session.pegadaCO2 != null) return session.pegadaCO2;
     const users = getUsers();
     const user = users.find(u => u.email === session.email);
     return user ? (user.pegadaCO2 ?? null) : null;
 }
 
-// ---------- EcoScore: calculado a partir dos pontos ----------
+// ---------- ecoscore: calculado a partir dos pontos ----------
 
 function calcularEcoScore(totalPoints) {
-    // Escala: 0 pts = 0, 2000+ pts = 1000 (máximo)
+    // escala de pontos
     return Math.min(1000, Math.round((totalPoints / 2000) * 1000));
 }
 
@@ -65,7 +65,7 @@ function classificarImpacto(ecoScore) {
 }
 
 function calcularRankRegiao(ecoScore) {
-    // Percentual estimado baseado no EcoScore
+    // percentual estimado baseado no ecoscore
     if (ecoScore >= 900) return 'Top 1% na sua região';
     if (ecoScore >= 800) return 'Top 5% na sua região';
     if (ecoScore >= 650) return 'Top 15% na sua região';
@@ -76,40 +76,40 @@ function calcularRankRegiao(ecoScore) {
 
 
 
-// ---------- Rank da comunidade ----------
+// ---------- rank da comunidade ----------
 
 function calcularRankComunidade() {
     const users = getUsers();
-    // Filtra só quem já usou o app (tem pelo menos uma sessão registrada)
-    const ativos = users.filter(u => u.email); // todos os cadastrados
+    // filtra só quem já se registrou
+    const ativos = users.filter(u => u.email);
     return {
         total: ativos.length,
-        // Pega os últimos 3 cadastrados para mostrar no avatar group
+        // pega os últimos 3 cadastrados para mostrar no avatar group
         recentes: ativos.slice(-3).map(u => u.nome),
     };
 }
 
 function calcularEconomiaTotal() {
-    // Soma o total de pontos de todos os usuários para mostrar impacto coletivo
+    // soma o total de pontos de todos os usuários para mostrar impacto coletivo
     const users = getUsers();
     let totalPontos = 0;
-    let totalCO2Reduzido = 0; // kg
+    let totalCO2Reduzido = 0; 
 
     users.forEach(u => {
         const stats = getUserStats(u.email);
         totalPontos += stats.totalPoints;
-        // Estimativa: cada 100 pontos ≈ 5 kg CO2 economizados
+      
         totalCO2Reduzido += stats.totalPoints * 0.05;
     });
 
     return {
         totalPontos,
         totalCO2Reduzido: Math.round(totalCO2Reduzido),
-        totalResiduo: Math.round(totalCO2Reduzido * 0.3), // estimativa resíduos em kg
+        totalResiduo: Math.round(totalCO2Reduzido * 0.3),
     };
 }
 
-// ---------- Objetivos ativos (missões do dia) ----------
+// ---------- objetivos ativos ----------
 
 function buildObjetivosAtivos(email) {
     const data = getDailyMissions(email);
@@ -143,7 +143,7 @@ function getMissionIcon(badge) {
     return map[badge] || '🌱';
 }
 
-// ---------- Renderização ----------
+// ---------- renderização ----------
 
 function renderNomeUsuario(session) {
     const el = document.getElementById('user-name-display');
@@ -183,7 +183,7 @@ function renderPegadaCarbono(session, stats) {
     const tonStr = kgCO2 != null ? formatarPegada(kgCO2) + ' toneladas' : '—';
     const variacao = calcularVariacaoPegada(kgCO2);
 
-    // Texto descritivo
+    
     const pegadaDescEl = document.querySelector('.card-large p');
     if (pegadaDescEl) {
         if (kgCO2 != null) {
@@ -195,7 +195,7 @@ function renderPegadaCarbono(session, stats) {
         }
     }
 
-    // Badge de variação
+    // variação
     const trendEl = document.querySelector('.trend-badge');
     if (trendEl && variacao != null) {
         if (variacao >= 0) {
@@ -216,7 +216,7 @@ function renderPegadaCarbono(session, stats) {
 }
 
 function renderUsoEnergia(stats) {
-    // Estima kWh poupados: cada missão de energia = ~10 kWh economizados
+    // estima pontos
     const missionesEnergia =
         (stats.missionCounts['energia'] || 0) +
         (stats.missionCounts['digital'] || 0);
@@ -225,7 +225,7 @@ function renderUsoEnergia(stats) {
     const mainStatEl = document.querySelector('.card:nth-child(2) .main-stat');
     if (mainStatEl) mainStatEl.innerHTML = `${kwhEconomizados} <span>kWh</span>`;
 
-    // Eficiência baseada no streak
+    // eficiência baseada no streak
     const streak = getStreak(stats.email || '').count;
     const eficiencia = Math.min(50, 10 + (stats.totalCompleted || 0));
     const statDetailEl = document.querySelector('.card:nth-child(2) .stat-detail');
@@ -233,7 +233,7 @@ function renderUsoEnergia(stats) {
 }
 
 function renderAguaEconomizada(stats) {
-    // Cada missão de água = 200L economizados
+    // cada missão de água = 200L economizados
     const missionesAgua =
         (stats.missionCounts['agua'] || 0) +
         (stats.missionCounts['ducha'] || 0);
@@ -250,7 +250,7 @@ function renderComunidade() {
     const comunidade = calcularRankComunidade();
     const economia   = calcularEconomiaTotal();
 
-    // Avatar group — iniciais dos últimos cadastrados
+    // avatar group — iniciais dos últimos cadastrados
     const avatarGroup = document.querySelector('.avatar-group');
     if (avatarGroup) {
         avatarGroup.innerHTML = '';
@@ -274,7 +274,7 @@ function renderComunidade() {
             avatarGroup.appendChild(span);
         });
 
-        // +N restantes
+        
         const extra = comunidade.total - comunidade.recentes.length;
         if (extra > 0) {
             const moreEl = document.createElement('span');
@@ -284,7 +284,7 @@ function renderComunidade() {
         }
     }
 
-    // Mensagem da comunidade
+    // mensagem da comunidade
     const communityMsgEl = document.querySelector('.community-msg');
     if (communityMsgEl) {
         if (comunidade.total === 0) {
@@ -304,7 +304,7 @@ function renderObjetivos(email) {
     const container = document.querySelector('.goals-card');
     if (!container) return;
 
-    // Remove itens antigos
+    // remove itens antigos
     container.querySelectorAll('.goal-item').forEach(el => el.remove());
 
     if (objetivos.length === 0) {
@@ -353,7 +353,7 @@ function renderWelcomeMsg(session, stats) {
     }
 }
 
-// ---------- Botão "Analisar Detalhes" ----------
+// ---------- botão "analisar detalhes" ----------
 
 function bindAnalisarDetalhes() {
     const btn = document.querySelector('.btn-action');
@@ -363,7 +363,7 @@ function bindAnalisarDetalhes() {
     });
 }
 
-// ---------- Init ----------
+// ---------- inicializar ----------
 
 document.addEventListener('DOMContentLoaded', function () {
     const session = getSession();
