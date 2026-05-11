@@ -1,10 +1,10 @@
 // =============================================
-// EcoTrack - Quiz Socioeconômico
-// quiz-socioeconomico.js — Lógica central
+// EcoTrack - quiz2.js
+// lógica do quiz socioeconômico
 // =============================================
 
 const quizData = [
-    // Questão 1 — socioeconomico.html
+ 
     {
         page: 1,
         total: 3,
@@ -46,7 +46,7 @@ const quizData = [
         nextLabel: "Próximo",
     },
 
-    // Questão 2 — socioeconomico2.html
+    
     {
         page: 2,
         total: 3,
@@ -88,7 +88,7 @@ const quizData = [
         nextLabel: "Próximo",
     },
 
-    // Questão 3 — socioeconomico3.html
+    
     {
         page: 3,
         total: 3,
@@ -131,7 +131,7 @@ const quizData = [
     },
 ];
 
-// ── Detecta qual página está rodando ──────────────────────────────────────────
+
 function detectCurrentPage() {
     const path = window.location.pathname;
     if (path.includes("socioeconomico3")) return 3;
@@ -139,7 +139,7 @@ function detectCurrentPage() {
     return 1;
 }
 
-// ── Renderiza os dados da questão no DOM ──────────────────────────────────────
+
 function renderQuiz(data) {
     const fill = document.querySelector(".progress-bar-fill");
     const counter = document.querySelector(".progress-counter");
@@ -186,21 +186,19 @@ function renderQuiz(data) {
     if (dykText) dykText.textContent = data.didYouKnow;
 }
 
-// ── Lógica de seleção e confirmação ───────────────────────────────────────────
 
-// ── Chave única de storage por quiz e página ──────────────────────────────────
 function storageKey(quizId, page) {
     return `ecotrack_quiz_${quizId}_page${page}`;
 }
 
-// ── Salva resposta no localStorage ────────────────────────────────────────────
+
 function saveAnswer(quizId, page, selectedIndex) {
     try {
         localStorage.setItem(storageKey(quizId, page), String(selectedIndex));
     } catch (e) {}
 }
 
-// ── Recupera resposta salva (ou null) ─────────────────────────────────────────
+
 function loadAnswer(quizId, page) {
     try {
         const val = localStorage.getItem(storageKey(quizId, page));
@@ -211,8 +209,6 @@ function loadAnswer(quizId, page) {
 }
 
 
-
-// ── Aplica estado visual de resposta já confirmada ────────────────────────────
 function restoreConfirmedState(data, savedIndex) {
     const items = document.querySelectorAll(".option-item");
     items.forEach((el, idx) => {
@@ -240,12 +236,12 @@ function initQuizInteraction(data) {
     let selectedIndex = null;
     let confirmed = false;
 
-    // Restaura resposta salva
+  
     const saved = loadAnswer(QUIZ_ID, data.page);
     if (saved !== null) {
         selectedIndex = saved;
         confirmed = true;
-        // Aguarda DOM renderizado pelo renderQuiz
+        
         requestAnimationFrame(() => restoreConfirmedState(data, saved));
     }
 
@@ -270,7 +266,7 @@ function initQuizInteraction(data) {
             if (confirmed) return;
             confirmed = true;
             saveAnswer(QUIZ_ID, data.page, selectedIndex);
-            // Salva acerto/erro para a página de resultado
+            
             const wasCorrect = data.options[selectedIndex].correct;
             try {
                 localStorage.setItem(
@@ -324,7 +320,7 @@ function injectStyles() {
             60%       { transform: translateX(-4px); }
             80%       { transform: translateX(4px); }
         }
-        /* ── Feedback oculto por padrão ── */
+        
         .feedback {
             display: none;
             margin-top: 8px;
@@ -334,7 +330,7 @@ function injectStyles() {
             line-height: 1.5;
         }
 
-        /* ── Estado: selecionado ── */
+        
         .option-item.selected {
             background: #eef2ff;
             border: 2px solid #6366f1;
@@ -346,7 +342,7 @@ function injectStyles() {
             color: white;
         }
 
-        /* ── Estado: correto ── */
+        
         .option-item.correct {
             background: #f0fdf4;
             border: 2px solid #16a34a;
@@ -361,7 +357,7 @@ function injectStyles() {
             color: #16a34a;
         }
 
-        /* ── Estado: errado ── */
+        
         .option-item.wrong {
             background: #fff1f2;
             border: 2px solid #dc2626;
@@ -376,7 +372,7 @@ function injectStyles() {
             color: #dc2626;
         }
 
-        /* ── Transição suave nas opções ── */
+       
         .option-item {
             transition: all 0.25s ease, border 0.2s ease;
             border: 2px solid transparent;
