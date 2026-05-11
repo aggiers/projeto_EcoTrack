@@ -1,6 +1,6 @@
 // =============================================
 //  EcoTrack — calculador.js
-//  Cálculo real de pegada de carbono (CO2e/ano)
+//  cálculo real de pegada de carbono
 // =============================================
 
 const CALC_SAVE_KEY_PREFIX = 'ecotrack_calculator';
@@ -10,8 +10,8 @@ function getCalcSaveKey() {
     return session ? `${CALC_SAVE_KEY_PREFIX}_${session.email}` : CALC_SAVE_KEY_PREFIX;
 }
 
-// ---------- Fatores de emissão (kg CO2e) ----------
-// Fontes: IPCC, EPA, SEEG Brasil
+// ---------- fatores de emissão (kg CO2e) ----------
+// fontes: IPCC, EPA, SEEG Brasil
 
 const FATORES = {
     transporte: {
@@ -36,7 +36,7 @@ const FATORES = {
     metaClimatica: 1000,   // meta para 1.5°C até 2050
 };
 
-// Insights dinâmicos por faixa
+// insights dinâmicos por faixa
 const INSIGHTS = [
     {
         max: 800,
@@ -70,17 +70,17 @@ const INSIGHTS = [
     },
 ];
 
-// ---------- Estado da calculadora ----------
+// ---------- estado da calculadora ----------
 
 let estado = {
-    trajeto: null,         // 'eletrico' | 'publico' | 'bicicleta' | 'carro-gasolina'
+    trajeto: null,         
     kmSemanal: 45,
     energiaRenovavel: false,
     smartHome: false,
-    aguaHabitos: new Set(), // 'banhoCurto' | 'cargasCompletas' | 'aguaChuva'
+    aguaHabitos: new Set(),
 };
 
-// ---------- Carrega estado salvo ----------
+// ---------- carrega estado salvo ----------
 
 function carregarEstado() {
     const raw = localStorage.getItem(getCalcSaveKey());
@@ -96,24 +96,24 @@ function salvarEstado() {
     localStorage.setItem(getCalcSaveKey(), JSON.stringify(paraSerializar));
 }
 
-// ---------- Cálculo principal ----------
+// ---------- cálculo principal ----------
 
 function calcularPegada() {
     let total = 0;
 
-    // 1. Transporte
+    // transporte
     const fatorTrajeto = FATORES.transporte[estado.trajeto] ?? FATORES.transporte['carro-gasolina'];
     const kmAnual = estado.kmSemanal * 52;
     const emissaoTransp = fatorTrajeto * kmAnual; // kg CO2e/ano
     total += emissaoTransp;
 
-    // 2. Energia
+    // energia
     let emissaoEnergia = FATORES.energia.baseAnual;
     if (estado.energiaRenovavel) emissaoEnergia *= (1 - FATORES.energia.renovavelDesconto);
     if (estado.smartHome) emissaoEnergia *= (1 - FATORES.energia.smartHomeDesconto);
     total += emissaoEnergia;
 
-    // 3. Água (descontos)
+    // água (faz descontos no cálculo)
     let emissaoAgua = 0;
     if (estado.aguaHabitos.has('banhoCurto')) emissaoAgua += FATORES.agua.banhoCurto;
     if (estado.aguaHabitos.has('cargasCompletas')) emissaoAgua += FATORES.agua.cargasCompletas;
@@ -123,11 +123,11 @@ function calcularPegada() {
     return Math.max(0, Math.round(total));
 }
 
-// ---------- Percentil vs média brasileira ----------
+// ---------- percentual vs média brasileira ----------
 
 function calcularPercentil(pegada) {
-    // Distribuição simulada com base em dados SEEG
-    // ~20% < 1000 kg, ~50% < 2400 kg, ~80% < 4000 kg
+    // distribuição simulada com base em dados SEEG
+   
     if (pegada < 500) return 95;
     if (pegada < 1000) return 88;
     if (pegada < 1500) return 75;
@@ -138,7 +138,7 @@ function calcularPercentil(pegada) {
     return 8;
 }
 
-// ---------- Equivalências visuais ----------
+// ---------- equivalências visuais ----------
 
 function equivalencias(kgCO2) {
     return {
@@ -148,7 +148,7 @@ function equivalencias(kgCO2) {
     };
 }
 
-// ---------- Atualiza UI de resultado ----------
+// ---------- atualiza UI de resultado ----------
 
 function atualizarResultado(animar = false) {
     const pegada = calcularPegada();
@@ -156,21 +156,21 @@ function atualizarResultado(animar = false) {
     const percentil = calcularPercentil(pegada);
     const eqv = equivalencias(pegada);
 
-    // Faixa de insight
+    // faixa de insight
     const insight = INSIGHTS.find(i => pegada <= i.max) || INSIGHTS[INSIGHTS.length - 1];
 
-    // Progresso para meta climática (1000 kg = 100%, acima = passa de 100%)
+    // progresso para meta climática 
     const progressoPctMeta = Math.min(100, Math.round((pegada / FATORES.mediaBrasileiro) * 100));
     const melhorOuPior = pegada <= FATORES.mediaBrasileiro
         ? `${Math.round((1 - pegada / FATORES.mediaBrasileiro) * 100)}% Melhor`
         : `${Math.round((pegada / FATORES.mediaBrasileiro - 1) * 100)}% Acima`;
 
-    // Cor da barra
+    // cor da barra
     let corBarra = '#1a6641';
     if (pegada > 3000) corBarra = '#e05252';
     else if (pegada > 2000) corBarra = '#f59e0b';
 
-    // Atualiza elementos
+    // atualiza elementos
     const valorEl = document.querySelector('.valor-resultado');
     if (valorEl) {
         if (animar) {
@@ -199,7 +199,7 @@ function atualizarResultado(animar = false) {
     const dicaEl = document.querySelector('.cartao-dica:first-child p');
     if (dicaEl) dicaEl.textContent = insight.dica;
 
-    // Conquista dinâmica (segundo card)
+    // conquista dinâmica 
     const conquistaEl = document.querySelector('.cartao-dica:last-child p');
     if (conquistaEl) {
         if (pegada < 1000) {
@@ -210,7 +210,7 @@ function atualizarResultado(animar = false) {
         }
     }
 
-    // Equivalências (se existir o elemento)
+    // equivalências (se existir o elemento né)
     const eqvEl = document.querySelector('.equivalencias-texto');
     if (eqvEl) {
         eqvEl.innerHTML = `
@@ -222,28 +222,28 @@ function atualizarResultado(animar = false) {
     salvarEstado();
 }
 
-// ---------- Função de Compartilhamento ----------
+// ---------- função de compartilhamento ----------
 
 function configurarCompartilhamento() {
     const btnCompartilhar = document.getElementById('btn_compartilhar');
     if (!btnCompartilhar) return;
 
     btnCompartilhar.addEventListener('click', async () => {
-        // Pega o valor atual do resultado que já está na tela
+        // pega o valor atual do resultado que já está na tela
         const resultadoTexto = document.getElementById('resultado-valor')?.textContent || "0.00";
         
         const dadosCompartilhamento = {
             title: 'Meu Impacto Ecológico - EcoTrack',
             text: `Minha pegada de carbono atual é de ${resultadoTexto} kg CO2e/ano! Vamos juntos transformar nossa pegada em impacto vivo? 🌿`,
-            url: window.location.href // Envia o link da sua página
+            url: window.location.href // envia o link da página
         };
 
         try {
-            // Verifica se o navegador suporta o compartilhamento nativo
+            // verifica se o navegador suporta o compartilhamento nativo
             if (navigator.share) {
                 await navigator.share(dadosCompartilhamento);
             } else {
-                // Caso não suporte (navegadores antigos), copia o texto para a área de transferência
+                // caso não suporte (navegadores antigos), copia o texto para a área de transferência
                 navigator.clipboard.writeText(`${dadosCompartilhamento.text} Acesse: ${dadosCompartilhamento.url}`);
                 alert("Link e progresso copiados para a área de transferência!");
             }
@@ -253,13 +253,13 @@ function configurarCompartilhamento() {
     });
 }
 
-// Chame a função dentro do seu EventListener de DOMContentLoaded já existente
+
 document.addEventListener('DOMContentLoaded', () => {
-    // ... suas outras chamadas (initCalculadora, etc)
+    
     configurarCompartilhamento();
 });
 
-// ---------- Animação de contador ----------
+// ---------- animação de contador ----------
 
 function animarContador(el, de, ate, duracao) {
     const inicio = performance.now();
@@ -273,7 +273,7 @@ function animarContador(el, de, ate, duracao) {
     requestAnimationFrame(frame);
 }
 
-// ---------- Bind: Trajeto ----------
+// ---------- trajeto ----------
 
 function bindTrajeto() {
     const btns = document.querySelectorAll('.botoes-selecao .opcao-btn');
@@ -287,7 +287,7 @@ function bindTrajeto() {
     };
 
     btns.forEach(btn => {
-        // Marca ativo se já salvo
+        // marca ativo se já salvo
         const chave = mapa[btn.textContent.trim()];
         if (chave && chave === estado.trajeto) btn.classList.add('ativo');
 
@@ -299,13 +299,13 @@ function bindTrajeto() {
         });
     });
 
-    // Default: se nenhum salvo, seleciona primeiro
+    // se nenhum salvo, seleciona primeiro
     if (!estado.trajeto && btns.length) {
         btns[0].click();
     }
 }
 
-// ---------- Bind: Range de KM ----------
+// ---------- range de KM ----------
 
 function bindRange() {
     const range = document.querySelector('.seletor-range');
@@ -324,7 +324,7 @@ function bindRange() {
     });
 }
 
-// ---------- Bind: Toggles de energia ----------
+// ---------- toggles de energia ----------
 
 function bindToggles() {
     const linhas = document.querySelectorAll('.linha-alternancia');
@@ -333,7 +333,7 @@ function bindToggles() {
         const checkbox = linha.querySelector('input[type="checkbox"]');
         if (!checkbox) return;
 
-        // Restaura estado salvo
+        // restaura estado salvo
         if (i === 0) checkbox.checked = estado.energiaRenovavel;
         if (i === 1) checkbox.checked = estado.smartHome;
 
@@ -345,7 +345,7 @@ function bindToggles() {
     });
 }
 
-// ---------- Bind: Cards de água ----------
+// ---------- cards de água ----------
 
 function bindAgua() {
     const cards = document.querySelectorAll('.card-water');
@@ -355,7 +355,7 @@ function bindAgua() {
         const chave = mapaAgua[i];
         if (!chave) return;
 
-        // Restaura estado visual
+        // restaura estado visual
         if (estado.aguaHabitos.has(chave)) card.classList.add('selecionado');
 
         card.style.cursor = 'pointer';
@@ -371,7 +371,7 @@ function bindAgua() {
         });
     });
 
-    // CSS para card selecionado (injeta uma vez)
+  
     injetarEstilosAgua();
 }
 
@@ -406,20 +406,20 @@ function injetarEstilosAgua() {
     document.head.appendChild(s);
 }
 
-// ---------- Bind: Botão calcular ----------
+// ---------- botão calcular ----------
 
 function bindBotaoCalcular() {
     const btn = document.querySelector('.botao-calcular');
     if (!btn) return;
 
-    // Remove o <a> de dentro e torna o botão funcional
+    // remove o <a> de dentro e torna o botão funcional
     btn.innerHTML = 'Calcular meu impacto';
     btn.style.cursor = 'pointer';
 
     btn.addEventListener('click', (e) => {
         e.preventDefault();
 
-        // Pulsa o card de resultado
+        // pulsa o card de resultado
         const card = document.querySelector('.cartao-resultado');
         if (card) {
             card.style.transform = 'scale(1.02)';
@@ -432,7 +432,7 @@ function bindBotaoCalcular() {
     });
 }
 
-// ---------- Salva resultado na conta do usuário ----------
+// ---------- salva resultado na conta do usuário ----------
 
 function salvarEstadoNoUsuario() {
     const session = JSON.parse(localStorage.getItem('ecotrack_session') || 'null');
@@ -442,7 +442,7 @@ function salvarEstadoNoUsuario() {
     session.pegadaCO2 = pegada;
     localStorage.setItem('ecotrack_session', JSON.stringify(session));
 
-    // Atualiza também no array de usuários
+    // atualiza também no array de usuários
     const STORAGE_KEY = 'ecotrack_users';
     const users = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
     const idx = users.findIndex(u => u.email === session.email);
@@ -452,7 +452,7 @@ function salvarEstadoNoUsuario() {
     }
 }
 
-// ---------- Init ----------
+// ---------- inicializando ----------
 
 document.addEventListener('DOMContentLoaded', function () {
     carregarEstado();
