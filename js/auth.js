@@ -1,12 +1,12 @@
 // =============================================
 //  EcoTrack — auth.js
-//  Cadastro, Login, Avatar + Alertas visuais
+//  cadastro, login, avatar + alerts
 // =============================================
 
 const STORAGE_KEY = 'ecotrack_users';
 const SESSION_KEY = 'ecotrack_session';
 
-// ---------- Utilitários de dados ----------
+// ---------- utilitários de dados ----------
 
 function getUsers() {
   return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
@@ -28,7 +28,7 @@ function clearSession() {
   localStorage.removeItem(SESSION_KEY);
 }
 
-// ---------- Sistema de Alertas Visuais ----------
+// ---------- sistema de alerts ----------
 
 const alertStyles = `
   @keyframes ecoSlideDown {
@@ -106,10 +106,7 @@ function injectAlertStyles() {
   document.head.appendChild(style);
 }
 
-/**
- * showAlert({ icon, title, msg, btnText, type, onClose })
- * type: 'success' | 'error' | 'info' | 'warning'
- */
+
 function showAlert({ icon, title, msg, btnText = 'OK', type = 'info', onClose = null }) {
   injectAlertStyles();
 
@@ -141,7 +138,7 @@ function showAlert({ icon, title, msg, btnText = 'OK', type = 'info', onClose = 
   overlay.addEventListener('click', (e) => { if (e.target === overlay) fechar(); });
 }
 
-// ---------- Erros de campo ----------
+// ---------- erros de campo ----------
 
 function showError(inputEl, msg) {
   const prev = inputEl.parentElement.parentElement.querySelector('.error-msg');
@@ -168,7 +165,7 @@ function clearErrors(form) {
   });
 }
 
-// ---------- Cadastro ----------
+// ---------- cadastro ----------
 
 function initCadastro() {
   const form = document.querySelector('form');
@@ -258,13 +255,13 @@ function initCadastro() {
   });
 }
 
-// ---------- Login ----------
+// ---------- login ----------
 
 function initLogin() {
   const form = document.querySelector('form');
   if (!form) return;
 
-  // Já logado? Redireciona
+  // se ja ta logado, ele redireciona
   if (getSession()) {
     window.location.href = 'index.html';
     return;
@@ -342,7 +339,7 @@ function initLogin() {
   });
 }
 
-// ---------- Avatar no Header ----------
+// ---------- avatar no Header ----------
 
 function initAvatar() {
   const avatarEl = document.querySelector('.user-avatar');
@@ -425,43 +422,42 @@ function initAvatar() {
     });
 
   } else {
-    // Sem sessão: exibe link de login
+    // se não ta logado, ele exibe o link de login
     avatarEl.innerHTML = '<a href="login.html" style="text-decoration:none;color:inherit;font-size:12px;font-weight:600;font-family:Poppins,sans-serif;">Entrar</a>';
     avatarEl.style.cssText = 'display:flex;align-items:center;justify-content:center;cursor:pointer;';
   }
 }
 
-// ---------- Proteção de Rotas ----------
+// ---------- proteção de Rotas ----------
 
 function checkAuth() {
   const session = getSession();
   const path = window.location.pathname;
 
-  // Lista de páginas que EXIGEM login
+  // lista de páginas que EXIGEM login
   const protectedPages = ['actions.html', 'calculador.html', 'dashboard.html'];
 
-  // Verifica se a página atual está na lista de protegidas
+  // verifica se a página atual está na lista de protegidas
   const isProtected = protectedPages.some(page => path.includes(page));
 
   if (isProtected && !session) {
-    // Redireciona para cadastro se não houver sessão
+    // redireciona para cadastro se não houver sessão
     window.location.href = 'cadastro.html';
   }
 }
 
-// Chame a função dentro do DOMContentLoaded existente no auth.js
+
 document.addEventListener('DOMContentLoaded', function () {
-  checkAuth(); // <-- Adicione esta linha no topo
+  checkAuth(); 
   
   const path = window.location.pathname;
-  // ... resto do seu código initCadastro, initLogin, etc
 });
 
 function checkAuth() {
   const session = getSession();
   const path = window.location.pathname;
 
-  // Lista atualizada incluindo os Quizzes
+  // lista atualizada incluindo os quizzes
   const protectedPages = [
     'actions.html', 
     'calculador.html', 
@@ -474,7 +470,7 @@ function checkAuth() {
   const isProtected = protectedPages.some(page => path.includes(page));
 
   if (isProtected && !session) {
-    // Se tentar acessar o quiz sem login, vai para o cadastro
+    // se tentar acessar o quiz sem login, vai para o cadastro
     window.location.href = '../cadastro.html'; 
   } else {
     document.body.style.display = 'block';
@@ -483,14 +479,14 @@ function checkAuth() {
 
 function interceptQuizClicks() {
   const session = getSession();
-  if (session) return; // Se estiver logado, não faz nada
+  if (session) return; // se estiver logado, não faz nada
 
-  // Seleciona todos os botões de "Iniciar" dos quizzes
+  // seleciona todos os botões de "Iniciar" dos quizzes
   const quizButtons = document.querySelectorAll('.btn-start');
 
   quizButtons.forEach(button => {
     button.addEventListener('click', function(e) {
-      e.preventDefault(); // Impede a navegação direta
+      e.preventDefault(); // ele impede a navegação direta
       
       showAlert({
         icon: '🔒',
@@ -506,15 +502,15 @@ function interceptQuizClicks() {
   });
 }
 
-// Chame esta função no init geral
+
 document.addEventListener('DOMContentLoaded', function () {
-  // ... código existente ...
+
   if (window.location.pathname.includes('saibamais.html')) {
     interceptQuizClicks();
   }
 });
 
-// ---------- Init ----------
+// ---------- inicializando ----------
 
 document.addEventListener('DOMContentLoaded', function () {
   const path = window.location.pathname;
